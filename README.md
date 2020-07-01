@@ -1,6 +1,10 @@
 # fe-interview
 
-## network
+## 性能
+
+* [能不能说说前端缓存](https://github.com/suukii/fe-interview/issues/6)
+
+## 网络
 
 * [说说TCP和UDP的区别](https://github.com/suukii/fe-interview/issues/1)
 * [说说 TCP 三次握手的过程？为什么是三次而不是两次或四次？](https://github.com/suukii/fe-interview/issues/2)
