@@ -12,6 +12,10 @@
 * [HTTP 请求方法和报文结构](https://github.com/suukii/fe-interview/issues/4)
 * [GET 和 POST 有什么区别？](https://github.com/suukii/fe-interview/issues/5)
 
+## 安全
+
+* [什么是CSP，它有什么用？](https://github.com/suukii/fe-interview/issues/7)
+
 ## Anki
 
 同步更新的 [Anki 牌组](https://ankiweb.net/shared/info/1279694530)
