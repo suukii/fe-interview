@@ -27,3 +27,7 @@
 ## Anki
 
 同步更新的 [Anki 牌组](https://ankiweb.net/shared/info/1279694530)
+
+## Audio
+
+随便录了[音频](https://www.ximalaya.com/keji/39461560/312920880)来磨耳朵，也分享给大家吧。
