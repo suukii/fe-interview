@@ -3,6 +3,10 @@
 ## 性能
 
 * [能不能说说前端缓存](https://github.com/suukii/fe-interview/issues/6)
+* [能不能说说浏览器的本地存储？各自的优劣如何？](https://github.com/suukii/fe-interview/issues/10)
+* [如何实现事件的防抖和节流？](https://github.com/suukii/fe-interview/issues/11)
+* [如何实现图片懒加载？](https://github.com/suukii/fe-interview/issues/12)
+
 
 ## 网络
 
