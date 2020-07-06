@@ -10,6 +10,7 @@
 
 ## 网络
 
+* [能不能讲讲 DNS 查询？](https://github.com/suukii/fe-interview/issues/13)
 * [说说TCP和UDP的区别](https://github.com/suukii/fe-interview/issues/1)
 * [说说 TCP 三次握手的过程？为什么是三次而不是两次或四次？](https://github.com/suukii/fe-interview/issues/2)
 * [说说 TCP 四次挥手的过程](https://github.com/suukii/fe-interview/issues/3)
