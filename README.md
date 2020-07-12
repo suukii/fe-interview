@@ -1,5 +1,13 @@
 # fe-interview
 
+所有内容都在 Issues 中。
+
+因为是在为面试回答组织语言，所以每个问题的回答都不会太过详细。
+
+## Anki
+
+同步更新的 [Anki 牌组](https://ankiweb.net/shared/info/1279694530)
+
 ## 性能
 
 * [能不能说说前端缓存](https://github.com/suukii/fe-interview/issues/6)
@@ -28,7 +36,3 @@
 ## CSS
 
 * [BFC 是什么？](https://github.com/suukii/fe-interview/issues/8)
-
-## Anki
-
-同步更新的 [Anki 牌组](https://ankiweb.net/shared/info/1279694530)
