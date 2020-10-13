@@ -1,4 +1,4 @@
-> 整理自 [front-end-interview-handbook](https://github.com/yangshun/front-end-interview-handbook)。注：并非该仓库的翻译版本。
+> 整理自 [front-end-interview-handbook](https://github.com/yangshun/front-end-interview-handbook)。注：并非该仓库的翻译版本。都是一些比较简单的题目。
 
 #### 宿主对象(host objects)和原生对象(native objects)有什么不同？
 
@@ -45,3 +45,62 @@ https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_t
 https://stackoverflow.com/questions/20104930/whats-the-difference-between-feature-detection-feature-inference-and-using-th
 
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent
+
+#### 解释一下 Ajax
+
+Ajax(asynchronous JavaScript and XML) 是实现异步程序的一系列技术，利用 Ajax，程序可以异步地向服务器发送请求、获取数据、更新页面，而不用刷新整个页面。在现代实现中，一般都用 JSON 来代替 XML 进行数据传输了。常用到的 API 是 `XMLHttpRequest`，更新一点的 API 是 `fetch`。
+
+https://en.wikipedia.org/wiki/Ajax_(programming)
+
+https://developer.mozilla.org/en-US/docs/AJAX
+
+#### 阐述一下 Ajax 的优点和缺点
+
+**优点**
+
+-   提高用户体验：可以局部更新网页内容，不用整个页面刷新。
+-   减少 js 和 css 文件的下载次数：如果页面整个刷新，这些资源都要重新下载；而使用 ajax 的话，就只需要下载一次。
+-   可以维持页面状态：因为页面没有刷新，所以状态也不会被重置。
+-   其他 SPA 的优点。
+
+**缺点**
+
+-   动态网页对于添加书签并不友好。
+-   必须运行在支持 js 的浏览器上。
+-   对爬虫不友好，一些爬虫不会执行 js 脚本，也就爬不到内容。
+-   首屏时间长，SPA 页面要等到 js 加载执行完才能看到页面内容。
+-   SPA 的其他缺点。
+
+#### 说一下 JSONP 的原理，为什么它不是 Ajax？
+
+JSONP(JSON with Padding) 是用来绕过浏览器同源策略的一个方法，因为 Ajax 请求会受到同源策略的限制。
+
+它利用 `<script>` 来向跨域域名发起请求，一般同时会指定一个 `callback` 作为参数，比如 `https://example.com?callback=printData`，`printData` 需要在全局中定义。服务器收到请求后，会返回一个文件，里面的内容类似：
+
+```js
+printData({ name: 'suukii' });
+```
+
+浏览器接收到这个文件后执行里面的代码，这样就实现了从跨域域名请求数据的功能。
+
+但由于服务器返回的是一个 js 文件，`JSONP` 其实存在着不小的安全漏洞，所以除非请求域名是可信任的，不然不要轻易使用 `JSONP` 技术。另外，在 `CORS` 出现后，我们也基本不需要 `JSONP` 了。
+
+https://stackoverflow.com/a/2067584/1751946
+
+#### 解释一下“变量/函数提升”(hoisting)
+
+变量提升是用来解释“变量在声明前就可以被访问”这个现象的，简单地说就是把 `var` 声明语句“提升”到全局/模块/函数代码的顶端，但被提升的仅仅是声明语句，赋值语句并没有被提升。函数声明则是整个函数体都会被提升。
+
+`let` 和 `const` 声明的变量也都会被提升，但存在一个“暂时性死区”，在 `let`，`const` 声明语句执行之前，这些变量都不能被访问到。
+
+“提升”其实并不是真实存在的行为，只是为了容易理解而提出来的一个概念。实际上在代码执行之前，JS 引擎还会有一个编译的阶段，在这个过程中它会解析声明语句，确定哪些作用域里面有哪些变量。
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_Types#Variable_hoisting
+
+https://stackoverflow.com/questions/31219420/are-variables-declared-with-let-or-const-not-hoisted-in-es6/31222689#31222689
+
+#### 描述一下事件冒泡
+
+当一个 DOM 元素上触发了某个事件时，它会先检查有没有事件处理函数，然后再把事件传递给它的父元素，如此重复，一直到 `document` 元素。
+
+事件冒泡就是事件代理的原理。
