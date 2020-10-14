@@ -246,3 +246,78 @@ http://stackoverflow.com/questions/21862054/single-page-app-advantages-and-disad
 http://blog.isquaredsoftware.com/presentations/2016-10-revolution-of-web-dev/
 
 https://medium.freecodecamp.com/heres-why-client-side-rendering-won-46a349fadb52
+
+#### 解释一下 Promise
+
+Promise 是一个对象，保存着一个结果，这个结果在将来某一时刻才会被确定。
+
+它有 3 种状态：
+
+1. 在结果确定之前，处于 pending 状态
+2. 成功的结果，resolved，返回数据
+3. 失败的结果，rejected，可能是报错了，返回错误信息
+
+常见的 polyfill 有 `$.deferred`, Q 和 Blvebird，不过不是所有 polyfill 都完全遵循规范来实现的。
+
+https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261
+
+#### Promise 相对于回调的优缺点是什么？
+
+**优点**
+
+1. 避免回调地狱。
+2. 编写顺序异步程序更简单。
+3. 有了 `Promise.all()`，写并行异步更简单了。
+4. 关于回调的几个问题：过早调用、过晚调用、调用次数过多/过少、参数缺失、吞并异常等问题都不会发生。
+
+**缺点**
+
+1. 兼容性，老浏览器可能不支持。
+
+https://github.com/getify/You-Dont-Know-JS/blob/master/async%20%26%20performance/ch3.md
+
+#### 用另外一门语言写代码再编译成 JS 这样做的优缺点是什么？
+
+**优点**
+
+1. 新语言解决了一些 JS 的历史遗留问题，还会限制使用 anti-patterns。
+2. 还可能提供一些语法糖，减少代码量。
+3. 对于大项目，静态检查(TS)是很有必要的。
+
+**缺点**
+
+- 多了一个打包/编译的过程，因为浏览器只能执行 JS。
+- 如果 sourcemap 没有对应到编译前的代码的话，debug 会变得很麻烦。
+- 要考虑团队的学习成本。
+- 社区可能会比较小，资源/教程/工具不多。
+- IDE 支持可能不足。
+- 这些语言总会落后于最新的 JS 规范。
+
+https://softwareengineering.stackexchange.com/questions/72569/what-are-the-pros-and-cons-of-coffeescript
+
+#### 使用什么工具和技术来 debug
+
+- React, Redux: [React Devtools](https://github.com/facebook/react-devtools), [Redux Devtools](https://github.com/gaearon/redux-devtools)
+- Vue: [Vue Devtools](https://github.com/vuejs/vue-devtools)
+- JavaScript: [Chrome Devtools](https://hackernoon.com/twelve-fancy-chrome-devtools-tips-dc1e39d10d9d), `debugger`, `console.log`
+
+
+https://hackernoon.com/twelve-fancy-chrome-devtools-tips-dc1e39d10d9d
+
+https://raygun.com/blog/javascript-debugging/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
