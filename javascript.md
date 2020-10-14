@@ -48,7 +48,7 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_us
 
 #### 解释一下 Ajax
 
-Ajax(asynchronous JavaScript and XML) 是实现异步程序的一系列技术，利用 Ajax，程序可以异步地向服务器发送请求、获取数据、更新页面，而不用刷新整个页面。在现代实现中，一般都用 JSON 来代替 XML 进行数据传输了。常用到的 API 是 `XMLHttpRequest`，更新一点的 API 是 `fetch`。
+Ajax(asynchronous JavaScript and XML) 是实现异步程序的一系列技术，利用 Ajax，程序可以异步地向服务器发送请求、获取数据、更新页面，而不用刷新整个页面。在现代的实现中，一般都用 JSON 来代替 XML 进行数据传输了。常用到的 API 是 `XMLHttpRequest`，新一点的 API 是 `fetch`。
 
 https://en.wikipedia.org/wiki/Ajax_(programming)
 
@@ -60,7 +60,7 @@ https://developer.mozilla.org/en-US/docs/AJAX
 
 -   提高用户体验：可以局部更新网页内容，不用整个页面刷新。
 -   减少 js 和 css 文件的下载次数：如果页面整个刷新，这些资源都要重新下载；而使用 ajax 的话，就只需要下载一次。
--   可以维持页面状态：因为页面没有刷新，所以状态也不会被重置。
+-   可以保持页面状态：因为页面没有刷新，所以状态也不会被重置。
 -   其他 SPA 的优点。
 
 **缺点**
@@ -75,7 +75,7 @@ https://developer.mozilla.org/en-US/docs/AJAX
 
 JSONP(JSON with Padding) 是用来绕过浏览器同源策略的一个方法，因为 Ajax 请求会受到同源策略的限制。
 
-它利用 `<script>` 来向跨域域名发起请求，一般同时会指定一个 `callback` 作为参数，比如 `https://example.com?callback=printData`，`printData` 需要在全局中定义。服务器收到请求后，会返回一个文件，里面的内容类似：
+它利用 `<script>` 来向跨域域名发起请求，一般同时会指定一个 `callback` 作为参数，比如 `https://example.com?callback=printData`，`printData` 需要在全局中定义。服务器收到请求后，会返回一个 js 文件，里面的内容类似：
 
 ```js
 printData({ name: 'suukii' });
@@ -104,3 +104,93 @@ https://stackoverflow.com/questions/31219420/are-variables-declared-with-let-or-
 当一个 DOM 元素上触发了某个事件时，它会先检查有没有事件处理函数，然后再把事件传递给它的父元素，如此重复，一直到 `document` 元素。
 
 事件冒泡就是事件代理的原理。
+
+#### "attribute" 和 "property" 的区别是什么？
+
+attribute 是定义在 HTML 文档中的，而 property 是定义在 DOM 元素上的。
+
+https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html
+
+#### 为什么不推荐扩展 JS 的内置对象？
+
+因为如果直接在 `prototype` 上增加属性或者方法的话，很有可能会与第三方库或者未来的 JS 产生命名冲突。
+
+除了提供 polyfill，最好不要直接拓展内置对象的 `prototype`。
+
+http://lucybain.com/blog/2014/js-extending-built-in-objects/
+
+#### document 的 `load` 和 `DOMContentLoaded` 事件的区别是什么？
+
+-   `DOMContentLoaded` 是在 HTML 文档下载解析完之后触发的，不用等待其他资源如样式、图片、subframe 完成加载。
+-   `load` 事件则要等到 DOM 和所有其他资源都下载完成之后才会触发。
+
+https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded
+
+https://developer.mozilla.org/en-US/docs/Web/Events/load
+
+#### `==` 和 `===` 的区别是什么？
+
+-   `==` 在比较之前会进行类型转换。
+-   `===` 在比较之前不会进行类型转换，如果两个操作数类型不一致就直接返回 false。
+
+什么时候可以使用 `==`？一个小建议，在需要判断一个值是否等于 `null` 或者 `undefined` 的时候，为了方便，可以利用下 `==` 的类型转换。
+
+https://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons
+
+#### 解释一下同源策略(从 JS 相关的角度)
+
+同源策略限制了 JS 向跨域域名发送请求。同源指的是协议、hostname、端口名一致。
+
+这样做是为了避免网页执行了恶意脚本，恶意脚本通过操作 DOM 来获取敏感信息。
+
+https://en.wikipedia.org/wiki/Same-origin_policy
+
+#### `use strict;` 有什么用？它的优缺点是什么？
+
+用来开启全局或者函数的严格模式。
+
+**优点**
+
+-   给未声明的变量赋值时会抛出错误而不是默默创建一个全局变量。
+-   尝试删除不允许删除的对象属性时会报错而不是静默失败。
+-   要求函数参数命名唯一。
+-   单独调用函数时 `this` 的值是 `undefined` 而不是 `window`。
+-   纠正了一些其他 JS 的缺陷。
+
+**缺点**
+
+-   不能访问 `function.caller` 和 `function.arguments` 了。
+-   合并严格模式和非严格模式的代码可能会导致意想不到的问题。
+-   禁用了一些非严格模式中的特性。
+
+总的来说，还是推荐使用严格模式。
+
+http://2ality.com/2011/10/strict-mode-hatred.html
+
+http://lucybain.com/blog/2014/js-use-strict/
+
+#### 解释一下什么是 SPA 以及如何提高 SPA 的 SEO
+
+传统的网站是，浏览器从服务器接收 HTML 文档并渲染，如果用户跳转到了另一个链接，服务器会返回一份新的 HTML 文档，浏览器会重新渲染，这样每次都要更新整个页面，这个就叫做服务端渲染。
+
+但 SPA 用的是客户端渲染，浏览器会先下载一个文档，下载文档中包含的脚本(框架、库、源码)和样式，然后再开始执行脚本、渲染页面。当需要导航到另一个链接时，页面的 URL 会通过 HTML5 的 History API 来更新，然后通过 Ajax 从服务器下载新数据，更新到页面上。这种模式更接近原生程序。
+
+**优点**
+
+-   网站能更快地响应用户操作，不用一个操作一次全页面更新。
+-   减少了 HTTP 请求，包含在文档中的 JS 和 CSS 文件等资源只需要在第一次加载文档时下载，因为此后页面不再更新，这些资源也不需要重复下载了。
+-   更好实现了服务端和客服端的关注点分离。不同客户端上的网页应用可以对应同一套服务端代码，客户端和服务端通过约定好的 API 通信，各自技术栈不受对方约束。
+
+**缺点**
+
+-   首次加载需要加载的资源比较多，比如框架代码、程序代码、公用资源。
+-   需要在服务端进行设置把客户端的所有路由都重定向到同一个入口，然后让客户端接手路由管理，避免客户端页面刷新。
+-   SEO 不友好。SPA 要等 JS 加载完毕之后才会开始获取数据、渲染页面，但很多爬虫都不会执行 JS，所以就爬不到网页内容。如果需要考虑 SEO，可以考虑使用服务端渲染，或者使用 [Prerender](https://prerender.io/) 之类的服务。
+
+https://github.com/grab/front-end-guide#single-page-apps-spas
+
+http://stackoverflow.com/questions/21862054/single-page-app-advantages-and-disadvantages
+
+http://blog.isquaredsoftware.com/presentations/2016-10-revolution-of-web-dev/
+
+https://medium.freecodecamp.com/heres-why-client-side-rendering-won-46a349fadb52
