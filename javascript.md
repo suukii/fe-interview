@@ -90,7 +90,7 @@ https://github.com/h5bp/html5-boilerplate/wiki/Script-Loading-Techniques#documen
 
 -   特性检测是指检测浏览器是否支持某些功能，[Modernizr](https://modernizr.com/) 是一个用于特性检测的库。e.g. `'geolocation' in navigator`
 -   特性推理和特性检测差不多，不过它是检查浏览器是否支持另一个方法，如果浏览器支持方法 A，特性推理就认为浏览器也支持方法 B。特性推理并非推荐的做法，还是用特性检测比较靠谱。
--   UA 字符串可以通过 `navigator.userAgent` 来获取。这是浏览器提供的一个属性，包含了程序类型、操作系统、软件厂商或者软件版本等信息。不过，这个信息并非完全可信，比如 Chrome 提供的 UA 字符串会说它自己时 Chrome 和 Safari。这个方法也应该避免。
+-   UA 字符串可以通过 `navigator.userAgent` 来获取。这是浏览器提供的一个属性，包含了程序类型、操作系统、软件厂商或者软件版本等信息。不过，这个信息并非完全可信，比如 Chrome 提供的 UA 字符串会说它自己是 Chrome 和 Safari。这个方法也应该避免。
 
 https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection
 
@@ -100,7 +100,7 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_us
 
 #### 解释一下 Ajax
 
-Ajax(asynchronous JavaScript and XML) 是实现异步程序的一系列技术，利用 Ajax，程序可以异步地向服务器发送请求、获取数据、更新页面，而不用刷新整个页面。在现代的实现中，一般都用 JSON 来代替 XML 进行数据传输了。常用到的 API 是 `XMLHttpRequest`，新一点的 API 是 `fetch`。
+Ajax(asynchronous JavaScript and XML) 是实现异步程序的一系列技术，利用 Ajax，程序可以异步地向服务器发送请求、获取数据、更新页面，而不用刷新整个页面。现在一般都用 JSON 代替 XML 来进行数据传输了。常用到的 API 是 `XMLHttpRequest` 或者 `fetch`。
 
 https://en.wikipedia.org/wiki/Ajax_(programming)
 
@@ -111,7 +111,7 @@ https://developer.mozilla.org/en-US/docs/AJAX
 **优点**
 
 -   提高用户体验：可以局部更新网页内容，不用整个页面刷新。
--   减少 js 和 css 文件的下载次数：如果页面整个刷新，这些资源都要重新下载；而使用 ajax 的话，就只需要下载一次。
+-   减少 js 和 css 文件的下载次数：如果页面整个刷新，文档中的资源都要重新下载；而使用 ajax 的话，就只需要下载一次。
 -   可以保持页面状态：因为页面没有刷新，所以状态也不会被重置。
 -   其他 SPA 的优点。
 
@@ -145,7 +145,7 @@ https://stackoverflow.com/a/2067584/1751946
 
 `let` 和 `const` 声明的变量也都会被提升，但存在一个“暂时性死区”，在 `let`，`const` 声明语句执行之前，这些变量都不能被访问到。
 
-“提升”其实并不是真实存在的行为，只是为了容易理解而提出来的一个概念。实际上在代码执行之前，JS 引擎还会有一个编译的阶段，在这个过程中它会解析声明语句，确定哪些作用域里面有哪些变量。
+“提升”其实并不是真实存在的行为，只是为了容易理解而提出来的一个概念。实际上在代码执行之前，JS 引擎还会有一个编译的阶段，在这个过程中它会解析声明语句，确定哪些作用域里面存在哪些变量。
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_Types#Variable_hoisting
 
@@ -155,7 +155,7 @@ https://stackoverflow.com/questions/31219420/are-variables-declared-with-let-or-
 
 当一个 DOM 元素上触发了某个事件时，它会先检查有没有事件处理函数，然后再把事件传递给它的父元素，如此重复，一直到 `document` 元素。
 
-事件冒泡就是事件代理的原理。
+事件冒泡是事件代理的原理。
 
 #### "attribute" 和 "property" 的区别是什么？
 
@@ -165,7 +165,7 @@ https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html
 
 #### 为什么不推荐扩展 JS 的内置对象？
 
-因为如果直接在 `prototype` 上增加属性或者方法的话，很有可能会与第三方库或者未来的 JS 产生命名冲突。
+因为如果直接在 `prototype` 上增加属性或者方法的话，很有可能会与第三方库或者将来的 JS 原生方法产生命名冲突。
 
 除了提供 polyfill，最好不要直接拓展内置对象的 `prototype`。
 
@@ -193,7 +193,7 @@ https://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-us
 
 同源策略限制了 JS 向跨域域名发送请求。同源指的是协议、hostname、端口名一致。
 
-这样做是为了避免网页执行了恶意脚本，恶意脚本通过操作 DOM 来获取敏感信息。
+这样做是为了避免网页执行了恶意脚本，然后恶意脚本通过操作 DOM 来获取敏感信息。
 
 https://en.wikipedia.org/wiki/Same-origin_policy
 
@@ -215,7 +215,7 @@ https://en.wikipedia.org/wiki/Same-origin_policy
 -   合并严格模式和非严格模式的代码可能会导致意想不到的问题。
 -   禁用了一些非严格模式中的特性。
 
-总的来说，还是推荐使用严格模式。
+不过总的来说，还是推荐使用严格模式。
 
 http://2ality.com/2011/10/strict-mode-hatred.html
 
@@ -225,7 +225,7 @@ http://lucybain.com/blog/2014/js-use-strict/
 
 传统的网站是，浏览器从服务器接收 HTML 文档并渲染，如果用户跳转到了另一个链接，服务器会返回一份新的 HTML 文档，浏览器会重新渲染，这样每次都要更新整个页面，这个就叫做服务端渲染。
 
-但 SPA 用的是客户端渲染，浏览器会先下载一个文档，下载文档中包含的脚本(框架、库、源码)和样式，然后再开始执行脚本、渲染页面。当需要导航到另一个链接时，页面的 URL 会通过 HTML5 的 History API 来更新，然后通过 Ajax 从服务器下载新数据，更新到页面上。这种模式更接近原生程序。
+但 SPA 用的是客户端渲染，浏览器会先下载一个文档，下载文档中包含的脚本(框架、库、源码)和样式，然后再开始执行脚本、渲染页面。当需要导航到另一个链接时，页面的 URL 会通过 HTML5 的 History API 来更新，然后程序通过 Ajax 从服务器下载新数据，更新到页面上。这种模式更接近原生程序。
 
 **优点**
 
@@ -267,7 +267,7 @@ https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pr
 
 1. 避免回调地狱。
 2. 编写顺序异步程序更简单。
-3. 有了 `Promise.all()`，写并行异步更简单了。
+3. 有了 `Promise.all()`，写并行异步也更简单了。
 4. 关于回调的几个问题：过早调用、过晚调用、调用次数过多/过少、参数缺失、吞并异常等问题都不会发生。
 
 **缺点**
@@ -286,38 +286,61 @@ https://github.com/getify/You-Dont-Know-JS/blob/master/async%20%26%20performance
 
 **缺点**
 
-- 多了一个打包/编译的过程，因为浏览器只能执行 JS。
-- 如果 sourcemap 没有对应到编译前的代码的话，debug 会变得很麻烦。
-- 要考虑团队的学习成本。
-- 社区可能会比较小，资源/教程/工具不多。
-- IDE 支持可能不足。
-- 这些语言总会落后于最新的 JS 规范。
+-   多了一个打包/编译的过程，因为浏览器只能执行 JS。
+-   如果 sourcemap 没有对应到编译前的代码的话，debug 会变得很麻烦。
+-   要考虑团队的学习成本。
+-   社区可能会比较小，资源/教程/工具不多。
+-   IDE 支持可能不足。
+-   这些语言总会落后于最新的 JS 规范。
 
 https://softwareengineering.stackexchange.com/questions/72569/what-are-the-pros-and-cons-of-coffeescript
 
 #### 使用什么工具和技术来 debug
 
-- React, Redux: [React Devtools](https://github.com/facebook/react-devtools), [Redux Devtools](https://github.com/gaearon/redux-devtools)
-- Vue: [Vue Devtools](https://github.com/vuejs/vue-devtools)
-- JavaScript: [Chrome Devtools](https://hackernoon.com/twelve-fancy-chrome-devtools-tips-dc1e39d10d9d), `debugger`, `console.log`
-
+-   React, Redux: [React Devtools](https://github.com/facebook/react-devtools), [Redux Devtools](https://github.com/gaearon/redux-devtools)
+-   Vue: [Vue Devtools](https://github.com/vuejs/vue-devtools)
+-   JavaScript: [Chrome Devtools](https://hackernoon.com/twelve-fancy-chrome-devtools-tips-dc1e39d10d9d), `debugger`, `console.log`
 
 https://hackernoon.com/twelve-fancy-chrome-devtools-tips-dc1e39d10d9d
 
 https://raygun.com/blog/javascript-debugging/
 
+#### 如何遍历对象和数组？
 
+**遍历对象的键**
 
+1. `for...in`
+2. `Object.keys()`
+3. `Object.getOwnPropertyNames()`
 
+**遍历数组**
 
+1. for loop
+2. `for...of`，如果获取下标和值，可以用 `arr.entries()` 方法
+3. `.forEach()` 等
 
+http://2ality.com/2015/08/getting-started-es6.html#from-for-to-foreach-to-for-of
 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/entries
 
+#### 解释一下 mutable 和 immutable 对象
 
+mutable 就是普通的 JS 对象。
 
+immutable 指的是对象在创建之后，状态不能再修改。immutable 是函数式编程中一个很重要的原则。
 
+**如何创建 immutable 对象？**
 
+-   禁止改写属性：设置 `writable: false` 和 `configurable: false`。
+-   禁止添加属性：`Object.preventExtensions(...)`。
+-   `Object.seal()`：相当于 `Object.preventExtensions(...)` + `configurable: false`，但还可以修改属性值。
+-   `Object.freeze()`：相当于 `Object.seal()` + `writable: false`
 
+**immutability 的优缺点**
 
+优点：
 
-
+-   容易追踪修改。而且对象的比较可以直接比较引用，在 React 和 Redux 中很有用。
+-   可预测，immutable 对象创建后就不会被修改了。
+-   不用担心不小心修改到原对象而每个操作都自行复制一个对象。
+-
