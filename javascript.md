@@ -341,6 +341,65 @@ immutable 指的是对象在创建之后，状态不能再修改。immutable 是
 优点：
 
 -   容易追踪修改。而且对象的比较可以直接比较引用，在 React 和 Redux 中很有用。
--   可预测，immutable 对象创建后就不会被修改了。
--   不用担心不小心修改到原对象而每个操作都自行复制一个对象。
--
+-   可预测，immutable 对象创建后状态就不会被修改了，不用担心某一个操作在将来会有什么影响。
+-   不用因为担心不小心修改到原对象而每次操作都自己复制一份对象。
+- 在多线程环境中也能放心使用，不用担心修改对象会相应其他线程。
+- 使用类似 ImmutableJS 的库可以提升性能，减少内存消耗。
+
+缺点：
+
+- 原生实现的性能太差，所以需要借助库来实现。
+- 如果对象很多的话，频繁的内存分配还是会影响性能。
+- 存在循环引用的结构很难实现 immutable。（如果你有两个对象，它们初始化之后都不能再改变，那你要如何实现它们相互引用？）
+
+https://github.com/yangshun/front-end-interview-handbook/blob/master/contents/en/javascript-questions.md
+
+#### 怎么实现 immutable？
+
+1. 用库，immutablejs, mori, immer
+2. 自己实现，用 `const` 加上上面提到的那些冻结对象的方法，需要"修改"对象时，使用展开符、`Object.assign()`、`Array.concat()` 等方法来创建新的对象。
+
+https://stackoverflow.com/questions/1863515/pros-cons-of-immutability-vs-mutability
+
+https://www.sitepoint.com/immutability-javascript/
+
+https://wecodetheweb.com/2016/02/12/immutable-javascript-using-es6-and-beyond/
+
+#### 解释一下同步和异步函数的区别？
+
+- 同步函数会阻塞主线程，异步函数不会。
+- 同步函数中，按顺序执行，上一个语句执行完才会执行下一个语句，如果执行时间过长，程序就会变成无法响应了。
+- 异步函数则一般接收一个回调函数，等异步操作结束之后再调用回调。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
