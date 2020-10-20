@@ -1,4 +1,4 @@
-> 整理自 [front-end-interview-handbook](https://github.com/yangshun/front-end-interview-handbook)。注：并非该仓库的翻译版本。都是一些比较简单的题目。
+> 整理自 [front-end-interview-handbook](https://github.com/yangshun/front-end-interview-handbook)。注：非该仓库的翻译版本。都是一些比较简单的题目。
 
 #### 解释一下事件代理
 
@@ -343,21 +343,21 @@ immutable 指的是对象在创建之后，状态不能再修改。immutable 是
 -   容易追踪修改。而且对象的比较可以直接比较引用，在 React 和 Redux 中很有用。
 -   可预测，immutable 对象创建后状态就不会被修改了，不用担心某一个操作在将来会有什么影响。
 -   不用因为担心不小心修改到原对象而每次操作都自己复制一份对象。
-- 在多线程环境中也能放心使用，不用担心修改对象会相应其他线程。
-- 使用类似 ImmutableJS 的库可以提升性能，减少内存消耗。
+-   在多线程环境中也能放心使用，不用担心修改对象会相应其他线程。
+-   使用类似 ImmutableJS 的库可以提升性能，减少内存消耗。
 
 缺点：
 
-- 原生实现的性能太差，所以需要借助库来实现。
-- 如果对象很多的话，频繁的内存分配还是会影响性能。
-- 存在循环引用的结构很难实现 immutable。（如果你有两个对象，它们初始化之后都不能再改变，那你要如何实现它们相互引用？）
+-   原生实现的性能太差，所以需要借助库来实现。
+-   如果对象很多的话，频繁的内存分配还是会影响性能。
+-   存在循环引用的结构很难实现 immutable。（如果你有两个对象，它们初始化之后都不能再改变，那你要如何实现它们相互引用？）
 
 https://github.com/yangshun/front-end-interview-handbook/blob/master/contents/en/javascript-questions.md
 
 #### 怎么实现 immutable？
 
-1. 用库，immutablejs, mori, immer
-2. 自己实现，用 `const` 加上上面提到的那些冻结对象的方法，需要"修改"对象时，使用展开符、`Object.assign()`、`Array.concat()` 等方法来创建新的对象。
+1. 用库：immutablejs, mori, immer
+2. 自己实现：用 `const` + 上面提到的冻结对象的方法。需要"修改"对象时，使用展开符、`Object.assign()`、`Array.concat()` 等方法来创建新的对象。
 
 https://stackoverflow.com/questions/1863515/pros-cons-of-immutability-vs-mutability
 
@@ -367,39 +367,49 @@ https://wecodetheweb.com/2016/02/12/immutable-javascript-using-es6-and-beyond/
 
 #### 解释一下同步和异步函数的区别？
 
-- 同步函数会阻塞主线程，异步函数不会。
-- 同步函数中，按顺序执行，上一个语句执行完才会执行下一个语句，如果执行时间过长，程序就会变成无法响应了。
-- 异步函数则一般接收一个回调函数，等异步操作结束之后再调用回调。
+-   同步函数会阻塞主线程，异步函数不会。
+-   同步函数中，按顺序执行，上一个语句执行完才会执行下一个语句，如果执行时间过长，程序就会变成无法响应了。
+-   异步函数则一般接收一个回调函数，等异步操作结束之后再调用回调。
 
+#### 什么是事件循环？调用栈和任务队列的区别又是什么？
 
+事件循环是一个单线程的无限循环，它管着调用栈和任务队列，如果调用栈里面是空的，而任务队列中又有任务的话，事件循环就会从任务队列中出列一个任务，推入调用栈去执行。
 
+https://2014.jsconf.eu/speakers/philip-roberts-what-the-heck-is-the-event-loop-anyway.html
 
+https://2014.jsconf.eu/speakers/philip-roberts-what-the-heck-is-the-event-loop-anyway.html
 
+http://theproactiveprogrammer.com/javascript/the-javascript-event-loop-a-stack-and-a-queue/
 
+#### `function foo() {}` 和 `var foo = function () {}` 有什么区别？
 
+前一个是函数声明，后一个是函数表达式。关键区别在于函数声明中的函数体会被全部提升，所以可以在函数声明之前调用一个函数。而函数表达式中只有 `var` 声明语句被提升了，如果尝试在赋值钱调用函数，则会得到 TypeError。
 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function
 
+### `let`, `var`, `const` 的区别？
 
+|          | `var`     | `let`/`const`                         |
+| -------- | --------- | ------------------------------------- |
+| 作用域   | 函数/全局 | 块级，花括号(函数、if-else、for-loop) |
+| 提升     | 存在提升  | 存在提升，但存在暂时性死区            |
+| 重复声明 | 覆盖      | 报错                                  |
 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var
 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
 
+#### ES6 class 和 ES5 的构造函数有什么区别？
 
+最主要的是在写继承的时候提供了更简洁的语法糖，但是继承原理还是一样的。
 
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance
 
+https://eli.thegreenplace.net/2013/10/22/classical-inheritance-in-javascript-es5
 
+#### 说一下箭头函数的有点。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-   语法简洁。
+-   提供词法作用域的 `this`，箭头函数的 `this` 在书写时就确定为它外层第一个普通函数的 `this`。
