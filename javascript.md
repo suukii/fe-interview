@@ -409,7 +409,87 @@ https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance
 
 https://eli.thegreenplace.net/2013/10/22/classical-inheritance-in-javascript-es5
 
-#### 说一下箭头函数的有点。
+#### 说一下箭头函数的优点。
 
 -   语法简洁。
 -   提供词法作用域的 `this`，箭头函数的 `this` 在书写时就确定为它外层第一个普通函数的 `this`。
+
+#### 在构造函数中使用箭头函数有什么好处？
+
+将实例方法作为事件处理函数回调时，不用担心 `this` 丢失。
+
+在 React 的 class 组件中常用，可以省掉手动 bind 的步骤。
+
+https://medium.com/@machnicki/handle-events-in-react-with-arrow-functions-ede88184bbb
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+
+https://medium.com/@machnicki/handle-events-in-react-with-arrow-functions-ede88184bbb
+
+#### 高阶函数是什么？
+
+接收函数作为参数，或者返回一个函数的函数。用来抽象一些操作，比如 `map`, `forEach`, `bind` 等
+
+https://medium.com/javascript-scene/higher-order-functions-composing-software-5365cf2cbe99
+
+https://hackernoon.com/effective-functional-javascript-first-class-and-higher-order-functions-713fde8df50a
+
+https://eloquentjavascript.net/05_higher_order.html
+
+#### 什么是柯里化？
+
+柯里化指的是讲一个接收**多个参数**的函数，变成多个接收**一个参数**的函数，每次调用都只传入一个参数。
+
+这个技术是函数式编程中常见的，用于提高代码可读性和可组合性(compose)。
+
+```js
+function curry(fn) {
+    if (fn.length === 0) {
+        return fn;
+    }
+
+    function _curried(depth, args) {
+        return function (newArgument) {
+            if (depth - 1 === 0) {
+                return fn(...args, newArgument);
+            }
+            return _curried(depth - 1, [...args, newArgument]);
+        };
+    }
+
+    return _curried(fn.length, []);
+}
+
+function add(a, b) {
+    return a + b;
+}
+
+var curriedAdd = curry(add);
+var addFive = curriedAdd(5);
+
+var result = [0, 1, 2, 3, 4, 5].map(addFive); // [5, 6, 7, 8, 9, 10]
+```
+
+https://hackernoon.com/currying-in-js-d9ddc64f162e
+
+#### 文件间如何共享代码？
+
+取决于环境。
+
+-   浏览器：全局(window)、AMD(requirejs)
+-   Node.js：CommonJS
+
+不过 ES6 的模块系统最终应该会取代 AMD 和 CommonJS，统一客户端和服务器的模块系统。
+
+http://requirejs.org/docs/whyamd.html
+
+https://nodejs.org/docs/latest/api/modules.html
+
+http://2ality.com/2014/09/es6-modules-final.html
+
+#### 为什么会需要 class 静态成员？
+
+-   保存配置
+-   静态方法一般是纯函数
+
+https://stackoverflow.com/questions/21155438/when-to-use-static-variables-methods-and-when-to-use-instance-variables-methods
