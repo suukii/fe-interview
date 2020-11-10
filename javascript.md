@@ -1,6 +1,66 @@
 # JS 部分
 
+- [JS 部分](#js-部分)
+  - [front-end-interview-handbook](#front-end-interview-handbook)
+      - [解释一下事件代理](#解释一下事件代理)
+      - [解释一下 `this` 的运行机制](#解释一下-this-的运行机制)
+      - [解释一下原型链继承的运行机制](#解释一下原型链继承的运行机制)
+      - [AMD vs CommonJS](#amd-vs-commonjs)
+      - [如何区分 null, undefined, undeclared？](#如何区分-null-undefined-undeclared)
+      - [什么是闭包？](#什么是闭包)
+      - [宿主对象(host objects)和原生对象(native objects)有什么不同？](#宿主对象host-objects和原生对象native-objects有什么不同)
+      - [`.call` 和 `.apply` 的区别？](#call-和-apply-的区别)
+      - [解释一下 `.bind`](#解释一下-bind)
+      - [解释一下 `document.write()`](#解释一下-documentwrite)
+      - [特性检测(feature detection)、特性推理(feature inference)和 UA 字符串的区别是什么？](#特性检测feature-detection特性推理feature-inference和-ua-字符串的区别是什么)
+      - [解释一下 Ajax](#解释一下-ajax)
+      - [阐述一下 Ajax 的优点和缺点](#阐述一下-ajax-的优点和缺点)
+      - [说一下 JSONP 的原理，为什么它不是 Ajax？](#说一下-jsonp-的原理为什么它不是-ajax)
+      - [解释一下“变量/函数提升”(hoisting)](#解释一下变量函数提升hoisting)
+      - [描述一下事件冒泡](#描述一下事件冒泡)
+      - ["attribute" 和 "property" 的区别是什么？](#attribute-和-property-的区别是什么)
+      - [为什么不推荐扩展 JS 的内置对象？](#为什么不推荐扩展-js-的内置对象)
+      - [document 的 `load` 和 `DOMContentLoaded` 事件的区别是什么？](#document-的-load-和-domcontentloaded-事件的区别是什么)
+      - [`==` 和 `===` 的区别是什么？](#-和--的区别是什么)
+      - [解释一下同源策略(从 JS 相关的角度)](#解释一下同源策略从-js-相关的角度)
+      - [`use strict;` 有什么用？它的优缺点是什么？](#use-strict-有什么用它的优缺点是什么)
+      - [解释一下什么是 SPA 以及如何提高 SPA 的 SEO](#解释一下什么是-spa-以及如何提高-spa-的-seo)
+      - [解释一下 Promise](#解释一下-promise)
+      - [Promise 相对于回调的优缺点是什么？](#promise-相对于回调的优缺点是什么)
+      - [用另外一门语言写代码再编译成 JS 这样做的优缺点是什么？](#用另外一门语言写代码再编译成-js-这样做的优缺点是什么)
+      - [使用什么工具和技术来 debug](#使用什么工具和技术来-debug)
+      - [如何遍历对象和数组？](#如何遍历对象和数组)
+      - [解释一下 mutable 和 immutable 对象](#解释一下-mutable-和-immutable-对象)
+      - [怎么实现 immutable？](#怎么实现-immutable)
+      - [解释一下同步和异步函数的区别？](#解释一下同步和异步函数的区别)
+      - [什么是事件循环？调用栈和任务队列的区别又是什么？](#什么是事件循环调用栈和任务队列的区别又是什么)
+      - [`function foo() {}` 和 `var foo = function () {}` 有什么区别？](#function-foo--和-var-foo--function---有什么区别)
+      - [`let`, `var`, `const` 的区别？](#let-var-const-的区别)
+      - [ES6 class 和 ES5 的构造函数有什么区别？](#es6-class-和-es5-的构造函数有什么区别)
+      - [说一下箭头函数的优点。](#说一下箭头函数的优点)
+      - [在构造函数中使用箭头函数有什么好处？](#在构造函数中使用箭头函数有什么好处)
+      - [高阶函数是什么？](#高阶函数是什么)
+      - [什么是柯里化？](#什么是柯里化)
+      - [文件间如何共享代码？](#文件间如何共享代码)
+      - [为什么会需要 class 静态成员？](#为什么会需要-class-静态成员)
+  - [JS 基础](#js-基础)
+      - [谈谈你对闭包的理解](#谈谈你对闭包的理解)
+      - [什么是原型和原型链？](#什么是原型和原型链)
+      - [JS 中如何实现继承？](#js-中如何实现继承)
+      - [谈谈你对 BigInt 的理解](#谈谈你对-bigint-的理解)
+  - [JS 深入数组](#js-深入数组)
+      - [数组扁平化的几种方法](#数组扁平化的几种方法)
+      - [V8 的 `sort()` 用的是什么排序算法？](#v8-的-sort-用的是什么排序算法)
+  - [JS API 原理](#js-api-原理)
+      - [如何模拟实现一个 new 的效果？](#如何模拟实现一个-new-的效果)
+      - [如何模拟实现一个 bind 的效果？](#如何模拟实现一个-bind-的效果)
+      - [如何实现一个 call/apply 函数？](#如何实现一个-callapply-函数)
+      - [JS 中浅拷贝的手段有哪些？](#js-中浅拷贝的手段有哪些)
+      - [如何写一个完整的深拷贝？](#如何写一个完整的深拷贝)
+
 > 以下部分整理自 [front-end-interview-handbook](https://github.com/yangshun/front-end-interview-handbook)。
+
+## front-end-interview-handbook
 
 #### 解释一下事件代理
 
@@ -389,7 +449,7 @@ http://theproactiveprogrammer.com/javascript/the-javascript-event-loop-a-stack-a
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function
 
-### `let`, `var`, `const` 的区别？
+#### `let`, `var`, `const` 的区别？
 
 |          | `var`     | `let`/`const`                         |
 | -------- | --------- | ------------------------------------- |
@@ -498,6 +558,8 @@ https://stackoverflow.com/questions/21155438/when-to-use-static-variables-method
 
 > 以下部分整理自[神三元的博客](http://47.98.159.95/my_blog/)。
 
+## JS 基础
+
 #### 谈谈你对闭包的理解
 
 **概念**
@@ -534,5 +596,217 @@ https://stackoverflow.com/questions/21155438/when-to-use-static-variables-method
 TODO
 
 #### 谈谈你对 BigInt 的理解
+
+TODO
+
+## JS 深入数组
+
+#### 数组扁平化的几种方法
+
+**方法 1：递归 + reduce**
+
+```js
+const flatten = arr => {
+    return arr.reduce((res, item) => {
+        return Array.isArray(item)
+            ? [...res, ...flatten(item)]
+            : [...res, item];
+    }, []);
+};
+```
+
+**方法 2：序列化 + replace**
+
+```js
+const flatten = arr => {
+    return JSON.stringify(arr).replace(/\[|\]/g, '').split(',');
+};
+```
+
+**方法 3：调 API flat()**
+
+```js
+const flatten = arr => {
+    return arr.flat(Infinity);
+};
+```
+
+**方法 4：扩展运算符 + concat**
+
+```js
+const flatten = arr => {
+    let res = [...arr];
+    while (res.some(Array.isArray)) {
+        res = [].concat(...res);
+    }
+    return res;
+};
+```
+
+#### V8 的 `sort()` 用的是什么排序算法？
+
+[TODO](https://v8.dev/blog/array-sort)
+
+## JS API 原理
+
+#### 如何模拟实现一个 new 的效果？
+
+**new 做的几个事情：**
+
+1. 创建一个空对象
+2. 将构造函数中的 `this` 指向这个空对象
+3. 运行构造函数代码
+4. 如果函数返回值不是引用类型就返回第一步创建的对象
+
+**我们要做的事：**
+
+-   首先基于构造函数的原型新建一个空对象，实现实例可以访问原型对象属性的效果。
+-   将新对象作为 `this` 调用构造函数。
+-   判断构造函数的返回值，如果不是引用类型的值，就返回第一步创建的对象，否则直接返回构造函数返回值。
+
+```js
+const newFactory = (ctor, ...arg) => {
+    if (typeof ctor != 'function') {
+        throw TypeError('the first argument must be a function');
+    }
+
+    const thisObj = Object.create(ctor.prototype);
+    const returnedValue = ctor.apply(thisObj, arg);
+
+    return isObject(returnedValue) || isFunction(returnedValue)
+        ? returnedValue
+        : thisObj;
+
+    // *******************************************
+    function isObject(val) {
+        return typeof returnedValue == 'object' && returnedValue;
+    }
+
+    function isFunction(val) {
+        return typeof returnedValue == 'function';
+    }
+};
+```
+
+#### 如何模拟实现一个 bind 的效果？
+
+-   对于普通函数调用，绑定 `this` 就行。
+-   对于构造函数调用，要将绑定后函数的原型对象指向原函数的原型。
+-   由于 `new` 的优先级高于 `bind`，所以 `new` 调用绑定函数时要忽略之前传入的 `this` 而使用 new 出来的对象。
+
+```js
+Function.prototype.bind = function (thisArg, ...arg1) {
+    if (typeof this != 'function')
+        throw TypeError('cannot call bind on non-function');
+
+    const func = this;
+
+    const bound = function (...arg2) {
+        const context = this instanceof func ? this : thisArg;
+        return func.apply(context, [...arg1, ...arg2]);
+    };
+
+    bound.prototype = Object.create(func.prototype);
+    return bound;
+};
+```
+
+#### 如何实现一个 call/apply 函数？
+
+-   先把函数挂在传入的 `this` 对象上作为方法
+-   调用该方法
+-   从 `this` 对象上删掉该方法
+-   使用了 Symbol 避免命名冲突
+
+**call**
+
+```js
+Function.prototype.call = function (thisArg, ...arg) {
+    if (typeof this != 'function')
+        throw TypeError('cannot call call on non-function');
+
+    const funcNameSymbol = Symbol('tempFunction');
+    thisArg[funcNameSymbol] = this;
+
+    const res = thisArg[funcNameSymbol](...arg);
+    delete thisArg[funcNameSymbol];
+
+    return res;
+};
+```
+
+**apply**
+
+```js
+Function.prototype.call = function (thisArg, arg) {
+    // 跟 call 一样的
+};
+```
+
+#### JS 中浅拷贝的手段有哪些？
+
+**数组浅拷贝**
+
+1. 展开运算符，`[...target]`
+2. `target.slice(0)`
+3. `[].concat(target)`
+4. `for...in` + `hasOwnProperty` 自己实现
+
+**对象浅拷贝**
+
+1. 展开运算符，`{...target}`
+2. `Object.assign({}, target)`
+3. `for...in` + `hasOwnProperty` 自己实现
+
+#### 如何写一个完整的深拷贝？
+
+**第一步：递归拷贝**
+
+```js
+const deepClone = target => {
+    if (isArray(target) || isObject(target)) {
+        const copy = isArray(target) ? [] : {};
+
+        for (const prop in target) {
+            if (target.hasOwnProperty(prop)) {
+                const value = target[prop];
+                copy[prop] =
+                    isArray(value) || isObject(value)
+                        ? deepClone(value)
+                        : value;
+            }
+        }
+        return copy;
+    }
+    return target;
+
+    // *******************************************
+    function isArray(target) {
+        return Array.isArray(target);
+    }
+
+    function isObject(target) {
+        return typeof target == 'object' && target;
+    }
+};
+```
+
+**第二步：解决循环引用，用 WeakMap 记录已经处理过的值**
+
+```js
+const deepClone = (target, map = new WeakMap()) => {
+    if (map.has(target)) return target;
+
+    if (isArray(target) || isObject(target)) {
+        map.set(target, true);
+        // ...
+    }
+    // ...
+};
+```
+
+> 用 WeakMap 的弱引用避免内存泄漏。
+
+**第三步：处理特殊对象**
 
 TODO
