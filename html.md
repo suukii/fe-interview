@@ -6,7 +6,11 @@
   - [`href` 和 `src` 的区别？](#href-和-src-的区别)
   - [`script` 标签中的 defer 和 async 有什么区别？](#script-标签中的-defer-和-async-有什么区别)
 
+<hr/>
+
 > 以下部分整理自[神三元的博客](http://47.98.159.95/my_blog/)。
+
+<hr/>
 
 ## HTML5 和 HTML4 究竟有哪些不同？
 
@@ -40,7 +44,7 @@ meta 标签一般用来定义网页说明、关键字及其他元数据，这些
 
 **没有 defer 和 async 的情况下：**
 
-脚本的下载和执行顺序是根据 `script` 在文档中的书写顺序来的，而且这个下载和执行的过程还会阻塞(查一下 preloader, prescanner 什么的) HTML 文档的解析。
+脚本的下载和执行顺序是根据 `script` 在文档中的书写顺序来的，而且这个下载和执行的过程还会阻塞(TODO: 了解一下 preloader, prescanner 什么的，现在应该是提前加载了吧?) HTML 文档的解析。
 
 **defer 和 async 的区别**
 
@@ -53,4 +57,8 @@ meta 标签一般用来定义网页说明、关键字及其他元数据，这些
 
 当两个属性同时存在时，async 优先级更高。
 
+<hr/>
+
 > 以下部分整理自[qiu-deqing/FE-interview](https://github.com/qiu-deqing/FE-interview)。
+
+<hr/>
